@@ -26,6 +26,7 @@ export const authOptions: AuthOptions = {
   ],
   session: {
     strategy: 'jwt', // Ensures the type is SessionStrategy instead of generic string
+    maxAge: 2 * 60, // 2 minutes
   },
   pages: {
     signIn: '/auth/login',
