@@ -27,23 +27,25 @@ export default function Home() {
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <Link href="/auth/login/signup">
-            <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 h-10 sm:h-12 px-4 sm:px-5">
+            <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-blue-600 text-white gap-2 h-10 sm:h-12 px-4 sm:px-5">
               Sign Up
             </button>
           </Link>
           <Link href="/auth/login">
-            <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 h-10 sm:h-12 px-4 sm:px-5">
+            <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-blue-600 text-white gap-2 h-10 sm:h-12 px-4 sm:px-5">
               Log In
             </button>
           </Link>
-          <Link href="/dashboard">
-            <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 h-10 sm:h-12 px-4 sm:px-5">
+          {/* <Link href="/dashboard">
+            <button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-blue-600 text-white gap-2 h-10 sm:h-12 px-4 sm:px-5">
               Dashboard
             </button>
-          </Link>
+          </Link> */}
         </div>
       </main>
-      {/* Footer section remains unchanged */}
+      <footer className="mt-8 p-4 bg-gray-800 text-white">
+        <p>© 2024 Your Company. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
