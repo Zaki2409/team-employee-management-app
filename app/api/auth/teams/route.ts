@@ -1,18 +1,17 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+// app/api/auth/teams/route.ts
+
+import { NextResponse } from 'next/server'; // Import NextResponse
 import { connectToDatabase } from '@/lib/mongodb';
 import Team from '@/models/Team';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  await connectToDatabase();
+export async function GET(req: Request) {
+  await connectToDatabase(); // Ensure this connects successfully
 
-  if (req.method === 'GET') {
-    try {
-      const teams = await Team.find({});
-      res.status(200).json(teams);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch teams' });
-    }
-  } else {
-    res.status(405).json({ error: 'Method Not Allowed' });
+  try {
+    const teams = await Team.find({}); // Fetch teams from the database
+    return NextResponse.json(teams); // Return the teams in JSON format
+  } catch (error) {
+    console.error('Database fetch error:', error); // Log the error
+    return NextResponse.json({ error: 'Failed to fetch teams' }, { status: 500 });
   }
 }
