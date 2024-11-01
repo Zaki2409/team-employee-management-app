@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 interface Team {
-  _id: string; // Adjust according to your Team model
-  name: string; // Adjust according to your Team model
-  description: string; // Adjust according to your Team model
+  _id: string; // Existing property
+  teamId: string; // Add this line
+  name: string; // Existing property
+  description: string; // Existing property
 }
 
 const TeamList: React.FC = () => {
@@ -44,9 +45,10 @@ const TeamList: React.FC = () => {
       <div key={team._id} className="bg-white p-6 shadow-lg rounded-lg transition-transform transform hover:scale-105">
         <h2 className="text-2xl font-semibold text-gray-900">{team.name}</h2>
         <p className="mt-2 text-gray-600">{team.description}</p>
-        <Link href={`/teams/${team._id}`} className="inline-block text-blue-600 hover:underline mt-4 font-medium">
-          View Details
-        </Link>
+        <Link href={`/teams/${team.teamId}`} className="inline-block text-blue-600 hover:underline mt-4 font-medium">
+  View Details
+</Link>
+
       </div>
     ))}
   </div>

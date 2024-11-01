@@ -2,9 +2,10 @@
 import mongoose, { Schema, model, models } from 'mongoose';
 
 const TeamSchema = new Schema({
-  teamId: { type: String, unique: true, required: true },
+  teamId: { type: String, required: true, unique: true },
   name: { type: String, required: true },
-  members: [{ type: String }], // Array of employeeId references
+  description: { type: String, required: true },
+  members: { type: [String], default: [] }, // Array of user IDs
 });
 
 const Team = models.Team || model('Team', TeamSchema);

@@ -1,14 +1,19 @@
 import { NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
+import { getServerSession } from 'next-auth';
 import type { NextRequest } from 'next/server';
+import { authOptions } from './app/api/auth/[...nextauth]/route';
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+  // Get the session using the request object
+  const session = await getServerSession(authOptions);
 
-  // Redirect to login if no valid token is found
-  if (!token) {
+  // Redirect to login if no valid session is found
+  if (!session) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
+
+  // Log the session for debugging
+  console.log('Session:', session);
 
   return NextResponse.next();
 }

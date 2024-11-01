@@ -3,18 +3,30 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react'; // Import useSession
 
 export default function CreateTeam() {
   const [name, setName] = useState('');
   const router = useRouter();
+  const { data: session } = useSession(); // Access session data
+
+  console.log(session); // Check the session object for debugging
+
+  // Set creatorId directly from session if available
+  const employeeId = session?.user?.employeeId || null; // Safely access employeeId
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch('/api/auth/teams/create', { // Update URL
+    if (!employeeId) {
+      console.error('Employee ID is not available'); // Log if employee ID is not found
+      return; // Prevent submission if employee ID is not available
+    }
+
+    const response = await fetch('/api/auth/teams/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, creatorId: 'loggedInUserId' }), // Replace with actual user ID
+      body: JSON.stringify({ name, creatorId: employeeId }), // Use employeeId as creatorId
     });
 
     if (response.ok) {
