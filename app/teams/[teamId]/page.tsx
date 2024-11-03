@@ -8,7 +8,7 @@ interface Team {
   teamId: string; // Added to match your API structure
   name: string;
   description: string;
-  members: string[]; // Add this to represent user IDs
+  members: string[]; // Represents user IDs
 }
 
 const TeamDetail: React.FC = () => {
@@ -46,7 +46,7 @@ const TeamDetail: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId: newUserId }), // Here you can remove userName since it's managed in the API
+        body: JSON.stringify({ userId: newUserId }),
       });
   
       if (response.ok) {
@@ -60,12 +60,13 @@ const TeamDetail: React.FC = () => {
   const handleDeleteUser = async (userId: string) => {
     const confirmDelete = confirm(`Are you sure you want to delete user ${userId}?`);
     if (confirmDelete) {
+      console.log(userId);
       const response = await fetch(`/api/auth/teams/${teamId}/removeUser`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId }), // Here you can send userId to be removed
+        body: JSON.stringify({ userId }), // Send the userId to be removed
       });
   
       if (response.ok) {
@@ -76,38 +77,35 @@ const TeamDetail: React.FC = () => {
     }
   };
   
-
   if (loading) return <p>Loading team details...</p>;
   if (error) return <p>Error: {error}</p>;
-
   if (!team) return <p>No team details available.</p>;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800">
-  <div className="bg-white p-16 shadow-lg rounded-lg w-full h-screen max-w-full mx-auto"> {/* Full width and height */}
-    <h1 className="text-4xl font-bold mb-4 text-gray-900">{team.name}</h1>
-    <p className="text-gray-700 mb-4">{team.description}</p>
+      <div className="bg-white p-16 shadow-lg rounded-lg w-full h-screen max-w-full mx-auto"> {/* Full width and height */}
+        <h1 className="text-4xl font-bold mb-4 text-gray-900">{team.name}</h1>
+        <p className="text-gray-700 mb-4">{team.description}</p>
 
-    <div className="mt-6">
-      <button onClick={handleAddUser} className="mr-4 bg-blue-500 text-white px-4 py-2 rounded">
-        Add User
-      </button>
-    </div>
-
-    <h2 className="text-2xl font-semibold mt-6 text-gray-900">Members:</h2>
-    <ul className="list-disc list-inside mt-2">
-      {users.map((userId) => (
-        <li key={userId} className="flex items-center justify-between">
-          <span className=' text-gray-900'>{userId}</span>
-          <button onClick={() => handleDeleteUser(userId)} className="text-red-500 hover:underline">
-            Delete
+        <div className="mt-6">
+          <button onClick={handleAddUser} className="mr-4 bg-blue-500 text-white px-4 py-2 rounded">
+            Add User
           </button>
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
+        </div>
 
+        <h2 className="text-2xl font-semibold mt-6 text-gray-900">Members:</h2>
+        <ul className="list-disc list-inside mt-2">
+          {users.map((userId) => (
+            <li key={userId} className="flex items-center justify-between">
+              <span className=' text-gray-900'>{userId}</span>
+              <button onClick={() => handleDeleteUser(userId)} className="text-red-500 hover:underline">
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 

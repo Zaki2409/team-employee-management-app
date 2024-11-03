@@ -1,37 +1,39 @@
-// app/api/auth/teams/[teamId]/addUser/route.ts
-
-import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import Team from '@/models/Team';
-import { authOptions } from '../../../[...nextauth]/route';
-
+import Team from "@/models/Team";
+import { NextResponse } from "next/server";
+import { authOptions } from "../../../[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
 export async function POST(request: Request, { params }: { params: { teamId: string } }) {
   const session = await getServerSession(authOptions);
-  const { teamId } = params;
+  
+  // Await the params before using them
+  const { teamId } = await params; // <-- Make sure to await this
 
   if (!session) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  const userId = session.user.id; // Assuming the user ID is stored in the session
-  const userName = session.user.name; // Assuming the user name is stored in the session
-
   try {
-    const team = await Team.findById(teamId);
-    if (!team) {
-      return NextResponse.json({ message: 'Team not found' }, { status: 404 });
-    }
+      const { userId } = await request.json(); // Expecting the user ID to add
 
-    if (team.members.includes(userId)) {
-      return NextResponse.json({ message: 'User already in the team' }, { status: 400 });
-    }
+      if (!userId) {
+          return NextResponse.json({ message: 'User ID must be provided' }, { status: 400 });
+      }
 
-    team.members.push(userId);
-    await team.save();
+      const team = await Team.findOne({ teamId }); // Ensure you have the correct model to query
+      if (!team) {
+          return NextResponse.json({ message: 'Team not found' }, { status: 404 });
+      }
 
-    return NextResponse.json({ message: 'User added successfully', team }, { status: 200 });
+      // Add the user to the team
+      if (!team.members.includes(userId)) {
+          team.members.push(userId); // Add user only if they are not already a member
+          await team.save();
+      }
+
+      return NextResponse.json({ message: 'User added successfully', team }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({  }, { status: 500 });
+      console.error('Error adding user to team:', error);
+      return NextResponse.json({ message: 'Server error', error: error instanceof Error ? error.message : 'An unknown error occurred' }, { status: 500 });
   }
 }
