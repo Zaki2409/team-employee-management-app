@@ -39,7 +39,7 @@ export default function CreateTeam() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <form onSubmit={handleSubmit} className="card w-full max-w-md">
-        <h1 className="text-2xl font-bold">Create a New Team</h1>
+        <h1 className="text-2xl font-bold bg-gray-800">Create a New Team</h1>
         <input
           type="text"
           value={name}
