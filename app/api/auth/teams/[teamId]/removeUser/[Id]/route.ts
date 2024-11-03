@@ -30,7 +30,10 @@ export async function DELETE(request: Request, { params }: { params: { teamId: s
     // if (!team.members.includes(userId)) {
     //   return NextResponse.json({ message: 'User not found in the team' }, { status: 400 });
     // }
-
+    const userIsMember = team.members.includes(session.user.id); // Assuming session.user.id is the ID of the logged-in user
+    if (!userIsMember) {
+      return NextResponse.json({ message: 'You are not authorized to add users as you are not a team member.' }, { status: 403 });
+    }
     // Remove the user from the team
     team.members = team.members.filter((id: string) => id !== userId);
     await team.save();

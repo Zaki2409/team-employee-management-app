@@ -24,6 +24,10 @@ export async function POST(request: Request, { params }: { params: { teamId: str
       if (!team) {
           return NextResponse.json({ message: 'Team not found' }, { status: 404 });
       }
+      const userIsMember = team.members.includes(session.user.id); // Assuming session.user.id is the ID of the logged-in user
+      if (!userIsMember) {
+        return NextResponse.json({ message: 'You are not authorized to add users as you are not a team member.' }, { status: 403 });
+      }
 
       // Add the user to the team
       if (!team.members.includes(userId)) {

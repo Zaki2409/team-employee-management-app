@@ -51,9 +51,17 @@ const TeamDetail: React.FC = () => {
   
       if (response.ok) {
         setUsers((prev) => [...prev, newUserId]); // Update the users state
-      } else {
-        console.error('Failed to add user');
-      }
+
+       const result = await response.json();
+      console.log(result.message);
+    } else if (response.status === 403) {
+      // Show a pop-up alert and redirect
+      alert('You are not authorized to add users as you are not a team member.');
+      window.location.href = 'http://localhost:3000/teams/teamlist'; // Redirect to the team list page
+    } else {
+      const errorData = await response.json();
+      console.error('Failed to add user:', errorData.message);
+    }
     }
   };
   
@@ -71,8 +79,15 @@ const TeamDetail: React.FC = () => {
   
       if (response.ok) {
         setUsers((prev) => prev.filter((id) => id !== userId)); // Update the users state
+        const result = await response.json();
+        console.log(result.message);
+      } else if (response.status === 403) {
+        // Show a pop-up alert and redirect
+        alert('You are not authorized to add users as you are not a team member.');
+        window.location.href = 'http://localhost:3000/teams/teamlist'; // Redirect to the team list page
       } else {
-        console.error('Failed to delete user');
+        const errorData = await response.json();
+        console.error('Failed to add user:', errorData.message);
       }
     }
   };
