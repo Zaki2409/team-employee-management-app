@@ -4,7 +4,7 @@ import mongoose, { Schema, model, models } from 'mongoose';
 const TeamSchema = new Schema({
   teamId: { type: String, required: true, unique: true },
   name: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String, required: false  },
   members: { type: [String], default: [] }, // Array of user IDs
 });
 
