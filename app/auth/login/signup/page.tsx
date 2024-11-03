@@ -22,19 +22,19 @@ export default function SignupPage() {
       <input
         type="text"
         placeholder="Name"
-        className="p-2 border rounded-md mb-2 w-full"
+        className="p-2 border rounded-md mb-2 w-full  bg-gray-800"
         onChange={e => setForm({ ...form, name: e.target.value })}
       />
       <input
         type="text"
         placeholder="Username"
-        className="p-2 border rounded-md mb-2 w-full"
+        className="p-2 border rounded-md mb-2 w-full  bg-gray-800"
         onChange={e => setForm({ ...form, username: e.target.value })}
       />
       <input
         type="password"
         placeholder="Password"
-        className="p-2 border rounded-md mb-4 w-full"
+        className="p-2 border rounded-md mb-4 w-full  bg-gray-800"
         onChange={e => setForm({ ...form, password: e.target.value })}
       />
       <button type="submit" className="w-full h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ease-in-out">
