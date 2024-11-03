@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../../../[...nextauth]/route';
+import { authOptions } from '../../../../[...nextauth]/route';
 import Team from '@/models/Team';
 
 export async function DELETE(request: Request, { params }: { params: { teamId: string } }) {
@@ -15,9 +15,9 @@ export async function DELETE(request: Request, { params }: { params: { teamId: s
 
   const userId = session.user?.id; // Use optional chaining to avoid errors
 
-  if (!userId) {
-    return NextResponse.json({ message: 'User ID not found in session' }, { status: 400 });
-  }
+  // if (!userId) {
+  //   return NextResponse.json({ message: 'User ID not found in session' }, { status: 400 });
+  // }
 
   try {
     // Find the team by teamId (make sure this matches your schema)
@@ -27,9 +27,9 @@ export async function DELETE(request: Request, { params }: { params: { teamId: s
     }
 
     // Check if the user ID is part of the team members
-    if (!team.members.includes(userId)) {
-      return NextResponse.json({ message: 'User not found in the team' }, { status: 400 });
-    }
+    // if (!team.members.includes(userId)) {
+    //   return NextResponse.json({ message: 'User not found in the team' }, { status: 400 });
+    // }
 
     // Remove the user from the team
     team.members = team.members.filter((id: string) => id !== userId);

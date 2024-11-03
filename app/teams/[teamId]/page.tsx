@@ -61,7 +61,7 @@ const TeamDetail: React.FC = () => {
     const confirmDelete = confirm(`Are you sure you want to delete user ${userId}?`);
     if (confirmDelete) {
       console.log(userId);
-      const response = await fetch(`/api/auth/teams/${teamId}/removeUser`, {
+      const response = await fetch(`/api/auth/teams/${teamId}/removeUser/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
