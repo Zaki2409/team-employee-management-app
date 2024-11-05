@@ -7,8 +7,8 @@ declare module 'next-auth' {
       id: string; // Assuming user ID is a string
       employeeId?: string; // Add employeeId here
       name?: string | null;
-      email?: string | null;
-      image?: string | null;
+      username?: string | null;
+     
     };
   }
 

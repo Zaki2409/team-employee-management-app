@@ -39,14 +39,14 @@ export default function CreateTeam() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <form onSubmit={handleSubmit} className="card w-full max-w-md">
-        <h1 className="text-2xl font-bold bg-gray-800">Create a New Team</h1>
+        <h1 className="text-2xl font-bold bg-gray-700">Create a New Team</h1>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Team Name"
+          placeholder="Team Name "
           required
-          className="input mt-4"
+          className="input mt-4  bg-gray-800"
         />
         <button type="submit" className="btn mt-4">Create Team</button>
       </form>

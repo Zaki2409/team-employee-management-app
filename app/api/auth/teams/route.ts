@@ -9,6 +9,7 @@ export async function GET(req: Request) {
 
   try {
     const teams = await Team.find({}); // Fetch teams from the database
+    console.log(teams);
     return NextResponse.json(teams); // Return the teams in JSON format
   } catch (error) {
     console.error('Database fetch error:', error); // Log the error

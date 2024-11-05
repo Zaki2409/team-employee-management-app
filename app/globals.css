@@ -51,3 +51,7 @@ input {
 footer {
   @apply text-center mt-8;
 }
+select {
+  background-color: white; /* Ensure visibility */
+  color: black; /* Ensure text is readable */
+}

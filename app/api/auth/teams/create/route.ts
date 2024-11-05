@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   try {
     // Create a new team with the actual user ID as a member
     const newTeam = await Team.create({ 
-      teamId: `team-${Date.now()}`, 
+      teamId: `${Date.now()}`, 
       name, 
       members: [creatorId] // Use actual creator ID here
     });
