@@ -12,14 +12,14 @@ export default async function Home() {
     redirect('/dashboard');
   }
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20  gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start pb-16">
         <Image
           className="dark:invert"
-          src="/next.svg"
+          src="/WECOMMIT.svg"
           alt="Next.js logo"
-          width={180}
-          height={38}
+          width={280}
+          height={68}
           priority
         />
         <h1 className="text-3xl font-bold">Welcome to Your Employee Management App!</h1>
@@ -52,9 +52,9 @@ export default async function Home() {
           </Link> */}
         </div>
       </main>
-      <footer className="mt-8 p-4 bg-gray-800 text-white">
+      {/* <footer className="mt-8 p-4 bg-gray-800 text-white">
         <p>© 2024 Your Company. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }

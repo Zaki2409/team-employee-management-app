@@ -4,6 +4,9 @@ import { authOptions } from "../../../[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
 export async function POST(request: Request, { params }: { params: { teamId: string } }) {
+  // Ensure params are awaited
+  const { teamId } = await params; // This line ensures params are resolved asynchronously
+
   const session = await getServerSession(authOptions);
   console.log(session);
 
@@ -18,7 +21,7 @@ export async function POST(request: Request, { params }: { params: { teamId: str
       return NextResponse.json({ message: 'User ID must be provided' }, { status: 400 });
     }
 
-    const team = await Team.findOne({ teamId: params.teamId }); // Ensure you have the correct model to query
+    const team = await Team.findOne({ teamId }); // Ensure you have the correct model to query
     if (!team) {
       return NextResponse.json({ message: 'Team not found' }, { status: 404 });
     }

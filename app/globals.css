@@ -22,7 +22,7 @@ body {
 
 /* globals.css */
 
-
+/* 
 body {
   @apply bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200;
 }
@@ -44,14 +44,49 @@ input {
 }
 
 /* Add a card style for dashboard */
-.card {
+/* .card {
   @apply bg-white shadow-lg rounded-lg p-4 transition-transform duration-300 hover:shadow-xl;
 }
 
 footer {
   @apply text-center mt-8;
 }
-select {
-  background-color: white; /* Ensure visibility */
-  color: black; /* Ensure text is readable */
+
+
+/* globals.css */
+:root {
+  --primary-color: #1e3a8a; /* Indigo shade for a professional blue */
+  --secondary-color: #3b82f6; /* Light blue for accents */
+  --text-color: #ffffff;
+  --background-color: #f3f4f6;
+  --hover-bg-color: #2563eb; /* Slightly darker blue for hover */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--secondary-color);
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--hover-bg-color);
+  text-decoration: underline;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--hover-bg-color);
 }
