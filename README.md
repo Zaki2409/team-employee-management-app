@@ -97,9 +97,8 @@ Develop a web application using Next.js and MongoDB that manages employees and t
 | Sign up                           | POST   | /signup                          | Add Employee’s information          | Newly created employee data    |
 
 
-Demonstration Video:
 
-https://github.com/user-attachments/assets/5d293cde-43dd-486a-a325-ad44f2d83f9e
+
 
 
 ## Environment Setup
